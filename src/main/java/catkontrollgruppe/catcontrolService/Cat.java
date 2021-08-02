@@ -17,7 +17,7 @@ public class Cat {
     private SimpleBooleanProperty suess;
 
     //Konstruktor
-    public void Cat (String name, int alter, String impfdatum, double gewicht, boolean rund, boolean suess) {
+    public Cat (String name, int alter, String impfdatum, double gewicht, boolean rund, boolean suess) {
         this.name = new SimpleStringProperty(name);
         this.alter = new SimpleIntegerProperty(alter);
         this.impfdatum = new SimpleStringProperty(impfdatum);
@@ -27,7 +27,7 @@ public class Cat {
     }
 
     //Konstruktor Dummy
-    public void Cat() {
+    public Cat() {
 
         this.name = new SimpleStringProperty((String)"Dummy");
         this.alter = new SimpleIntegerProperty((int) 99);
