@@ -2,6 +2,7 @@ package catkontrollgruppe.catcontrolGUI;
 
 import catkontrollgruppe.catController.CatTable;
 import catkontrollgruppe.catcontrolService.Cat;
+import catkontrollgruppe.catcontrolService.Catcontainer;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -15,16 +16,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
-import static javafx.application.Application.launch;
-
 public class CatverwaltungGUI {
 
     public static void neuesFenster(Stage hauptFenster2) {
-        CatTable catTable = new CatTable();
-        ObservableList<Cat> catlist = catTable.getCatlist();
-        System.out.println("Die" + catlist + "ist in der Catverwaltung angekommen");
-
         Scene scene = new Scene(new Group(), 600, 600);
         Stage neuesWindow2 = new Stage();
 
@@ -41,6 +35,10 @@ public class CatverwaltungGUI {
         TableView<Cat> table = new TableView();
         table.setEditable(true);
 
+        Catcontainer catcontainer = new Catcontainer();
+        ObservableList<Cat> catlist = catcontainer.getCatlist();
+        System.out.println("Die" + catlist + "ist in der Catverwaltung angekommen");
+
         TableColumn namenSpalte = new TableColumn<Cat, String>("Name");
         TableColumn alterSpalte = new TableColumn<Cat, String>("Alter");
         TableColumn impfdatumSpalte = new TableColumn<Cat, String>("Impfdatum");
@@ -56,7 +54,6 @@ public class CatverwaltungGUI {
         suessSpalte.setCellValueFactory(new PropertyValueFactory<Cat, String>("suess"));
 
         table.setItems(catlist);
-
         table.getColumns().addAll(namenSpalte, alterSpalte, impfdatumSpalte, gewichtSpalte, rundSpalte, suessSpalte);
 
         final VBox vbox = new VBox();
@@ -64,13 +61,8 @@ public class CatverwaltungGUI {
         vbox.setPadding(new Insets(0, 0, 0, 0));
         vbox.getChildren().addAll(label, table);
 
-
         ((Group) scene.getRoot()).getChildren().addAll(vbox);
         neuesWindow2.setScene(scene);
         neuesWindow2.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

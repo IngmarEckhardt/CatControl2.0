@@ -1,5 +1,6 @@
 package catkontrollgruppe.catcontrolGUI;
 
+import catkontrollgruppe.catcontrolService.Catcontainer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -40,6 +41,8 @@ public class AbschiedsfensterGUI {
 
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.schedule(AbschiedsfensterGUI::closeCatControl, 1, TimeUnit.SECONDS);
+        System.out.println(Catcontainer.getCatlist());
+        System.out.println(Catcontainer.getCatArray());
 
         }
     protected static void closeCatControl()

@@ -1,6 +1,8 @@
 package catkontrollgruppe.catcontrolGUI;
 
 import catkontrollgruppe.catController.CatTable;
+import catkontrollgruppe.catcontrolService.Cat;
+import catkontrollgruppe.catcontrolService.CatKreation;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,9 +18,7 @@ import javafx.stage.Stage;
 public class CatControlGUI extends Application {
 
     public static void main(String[] args) {
-
-        CatTable catTable = new CatTable();
-
+        CatKreation cats = new CatKreation();
         launch(args);
     }
 
@@ -65,15 +65,15 @@ public class CatControlGUI extends Application {
         });
         knopfGame.setOnAction(actionEvent -> {
             //KatzengameGUI.neuesFenster(primaryStage);
-          //  Cat.schnurren();
+            Cat cat = new Cat();
+            cat.schnurren();
         });
         knopfHilfe.setOnAction(actionEvent -> {
             //HilfefensterGUI.neuesFenster(primaryStage);
-            //Katzensortierer.main(null);
 
         });
         knopfQuit.setOnAction(actionEvent -> {
-           // AbschiedsfensterGUI.neuesFenster(primaryStage);
+            AbschiedsfensterGUI.neuesFenster(primaryStage);
             //JOptionPane.showMessageDialog(null, "Programm wird beendet.");
         });
 
