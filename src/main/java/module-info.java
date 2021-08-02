@@ -11,4 +11,9 @@ module catkontrollgruppe.catcontrol2 {
 
     opens catkontrollgruppe.catcontrolGUI to javafx.fxml;
     exports catkontrollgruppe.catcontrolGUI;
+    opens catkontrollgruppe.catController to javafx.fxml;
+    exports catkontrollgruppe.catController;
+    opens catkontrollgruppe.catcontrolService to javafx.fxml;
+    exports catkontrollgruppe.catcontrolService;
+
 }

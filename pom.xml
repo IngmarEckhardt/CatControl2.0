@@ -90,7 +90,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>catkontrollgruppe.catcontrol2/catkontrollgruppe.catcontrolGUI.HelloApplication
+                            <mainClass>catkontrollgruppe.catcontrol2/catkontrollgruppe.catcontrolGUI.CatControlGUI
                             </mainClass>
                         </configuration>
                     </execution>

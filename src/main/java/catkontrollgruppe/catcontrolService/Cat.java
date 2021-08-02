@@ -40,7 +40,7 @@ public class Cat {
 //toString für bessere Erkennbarkeit im Datensatz
     @Override
     public String toString() {
-        return "Cat{" + name + '}';
+        return "Cat{" + name.get() + '}';
     }
 
 // Inhärente Fähigkeiten der Katze
@@ -124,7 +124,7 @@ public class Cat {
         this.rund.set(rund);
     }
 
-    public boolean getSuess() {
+    public boolean isSuess() {
         return suess.get();
     }
 
