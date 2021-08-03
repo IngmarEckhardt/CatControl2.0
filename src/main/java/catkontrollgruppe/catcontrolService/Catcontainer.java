@@ -2,7 +2,6 @@ package catkontrollgruppe.catcontrolService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -19,50 +18,35 @@ public class Catcontainer extends Thread {
 
     protected static void addCat(Cat newCat) {
         catArray.add(newCat);
-        System.out.println(newCat + "dem catArray hinzugefügt");
     }
 
     protected void addToObsList() {
-        System.out.println("Inhalt des CatArrays: " + catArray);
         catlist = FXCollections.observableArrayList(catArray);
-        System.out.println("Observable List aktualisiert:" + catlist);
     }
-    public static ArrayList<Cat> getCatArray() {
-        return catArray;
-    }
-
     public static ObservableList<Cat> getCatlist() {
         return catlist;
     }
 
-    public void setCatArray(ArrayList<Cat> catArray) {
-        this.catArray = catArray;
+    public static ArrayList<Cat> getCatArray() {
+        return catArray;
     }
 
-    public void addCatArray(Cat[] newCatArray) {
-        Collections.addAll(catArray, newCatArray);
-        Collections.sort(catArray, new SortierNamen());
-     }
-
+    // Ein eigener Thread der die Datenbank cached und die Speichermethode auslöst bei Bedarf
     public void run() {
-       try {
-            for (int i = 0; true; i++) {
+        try {
+            while (true) {
                 if (catArray.size()!=catlist.size()) {
-                    System.out.println(catArray + " unterscheidet sich von " + catlist);
                     if (catArray.size()>catlist.size()) {
                         Collections.sort(catArray, new SortierNamen());
                         addToObsList();
                         saveCompleteArray();
-                        System.out.println(catArray + " wurde gespeichert. Catlist wurde verworfen");
                     }
                     else {
                         Collections.sort(catlist, new SortierNamen());
                         saveCompleteArray();
-                        System.out.println(catlist + " wurde gespeichert. CatArray wurde verworfen");
                     }
                 }
-                // Let the thread sleep for a while.
-                Thread.sleep(400);
+                Thread.sleep(250);
             }
         } catch (InterruptedException e) {
             System.out.println("ContainerMonitorthread interrupted.");
@@ -98,8 +82,7 @@ public class Catcontainer extends Thread {
                     bw.write("\n" + "true");
                 } else {
                     bw.write("\n" + "false");
-                }
-                if (catlist.get(i).isSuess()) {
+                } if (catlist.get(i).isSuess()) {
                     bw.write("\n" + "true");
                 } else {
                     bw.write("\n" + "false");

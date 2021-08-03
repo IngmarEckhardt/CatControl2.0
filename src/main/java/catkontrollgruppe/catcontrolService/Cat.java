@@ -16,7 +16,6 @@ public class Cat {
     private SimpleBooleanProperty rund;
     private SimpleBooleanProperty suess;
 
-    //Konstruktor
     public Cat (String name, int alter, String impfdatum, double gewicht, boolean rund, boolean suess) {
         this.name = new SimpleStringProperty(name);
         this.alter = new SimpleIntegerProperty(alter);
@@ -26,7 +25,6 @@ public class Cat {
         this.suess = new SimpleBooleanProperty(suess);
     }
 
-    //Konstruktor Dummy
     public Cat() {
 
         this.name = new SimpleStringProperty((String)"Dummy");
@@ -37,27 +35,28 @@ public class Cat {
         this.suess = new SimpleBooleanProperty((boolean) true);
     }
 
-//toString für bessere Erkennbarkeit im Datensatz
     @Override
     public String toString() {
         return "Cat{" + name.get() + '}';
     }
 
-// Inhärente Fähigkeiten der Katze
 
+    /**Die Methode miauen erlaubt es den Katzenobjekten zu miauen*/
     public void miauen() {
         System.out.println("Miau");
     }
 
+    /**Die Methode fauchen erlaubt es den Katzenobjekten zu fauchen*/
     public void fauchen() {
         System.out.println("Fauch!!!");
     }
+
     /**Die Methode schnurren() erlaubt es den Katzenobjekten zu schnurren*/
     public void schnurren() {
-        System.out.println("Schnurr");
         JOptionPane.showMessageDialog(null, "schnurrrr.");
     }
 
+    /**Die Methode essen lässt die Katzenobjekte essen*/
     public void essen() {
         System.out.println("Mampf, mampf, mampf");
     }

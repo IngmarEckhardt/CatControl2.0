@@ -1,7 +1,5 @@
 package catkontrollgruppe.catcontrolService;
 
-import catkontrollgruppe.catController.CatTable;
-
 import javax.swing.*;
 import java.io.*;
 
@@ -13,7 +11,8 @@ public class CatKreation {
     double gewicht;
     boolean rund;
     boolean suess;
-
+    /* Auslesen der gespeicherten Katzen zu Beginn des Programms Erzeugung als Objekt, Einordnen in ArrayList, Erzeugung
+    der ObservableList. Die Cats.txt gehört ins User-Home-Verzeichnis. */
 
     public CatKreation() {
         Catcontainer catcontainern = new Catcontainer();
@@ -37,18 +36,12 @@ public class CatKreation {
                 rund = Boolean.parseBoolean(linie);
                 linie = br2.readLine();
                 suess = Boolean.parseBoolean(linie);
-
                 Cat newCat = new Cat(name, alter, impfdatum, gewicht, rund, suess);
-
-
-                //Zur Kontrolle der Objekterzeugung in der Alpha-Programm-Phase im Terminal
-                System.out.println("Die Katze " + newCat + " wurde erzeugt.");
                 catcontainern.addCat(newCat);
                 catcontainern.addToObsList();
             }
             catcontainern.start();
             br2.close();
-
         } catch (IOException ioAusnahme) {
             System.out.print("Datei konnte nicht geöffnet werden.");
         }
@@ -59,7 +52,6 @@ public class CatKreation {
         Cat newCat = new Cat(name, alter, impfdatum, gewicht, rund, suess);
         Catcontainer catcontainern = new Catcontainer();
         catcontainern.addCat(newCat);
-        //catcontainern.addToObsList();
         JOptionPane.showMessageDialog(null, "Die Katze " + newCat + " wurde erzeugt und dem Datensatz " +
                 "hinzugefügt", "Eingabe erfolgreich", JOptionPane.INFORMATION_MESSAGE);
     }
