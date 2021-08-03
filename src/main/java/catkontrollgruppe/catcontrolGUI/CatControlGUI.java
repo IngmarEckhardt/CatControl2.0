@@ -18,6 +18,7 @@ public class CatControlGUI extends Application {
 
     public static void main(String[] args) {
         CatKreation cats = new CatKreation();
+
         launch(args);
     }
 
