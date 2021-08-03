@@ -17,9 +17,6 @@ public class CatKreation {
 
     public CatKreation() {
 
-        //CatService catService = new CatService();
-        //int katzencount= catService.countCats();
-
         try {
             FileInputStream fis2 = new FileInputStream(System.getProperty("user.home") + File.separator + "Cats.txt");
             InputStreamReader isr2 = new InputStreamReader(fis2);
@@ -59,11 +56,10 @@ public class CatKreation {
     public CatKreation (String name, int alter, String impfdatum, double gewicht, boolean rund, boolean suess) {
 
         Cat newCat = new Cat(name, alter, impfdatum, gewicht, rund, suess);
-
-        //Catcontainer katzencontainern = new Catcontainer(newCat);
-        Catcontainer.addCat(newCat);
-        System.out.println(Catcontainer.getCatlist());
-
-        JOptionPane.showMessageDialog(null, "Die Katze " + newCat + " wurde erzeugt und dem Datensatz hinzugefügt", "Eingabe erfolgreich", JOptionPane.INFORMATION_MESSAGE);
+        Catcontainer catcontainern = new Catcontainer();
+        catcontainern.addCat(newCat);
+        catcontainern.addToObsList();
+        JOptionPane.showMessageDialog(null, "Die Katze " + newCat + " wurde erzeugt und dem Datensatz " +
+                "hinzugefügt", "Eingabe erfolgreich", JOptionPane.INFORMATION_MESSAGE);
     }
 }

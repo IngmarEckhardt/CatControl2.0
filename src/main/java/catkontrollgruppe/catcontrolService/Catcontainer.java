@@ -13,22 +13,18 @@ import java.util.Collections;
 public class Catcontainer extends Thread {
     private Thread t;
     private static ArrayList<Cat> catArray = new ArrayList<>();
-    private ArrayList<Cat> catArrayTest = new ArrayList<>();
     private static ObservableList<Cat> catlist;
-    private ObservableList<Cat> catlistTest;
-    private boolean safed;
-
-    protected static void addCat(Cat newCat) {
-        catArray.add(newCat);
-        Collections.sort(catArray, new SortierNamen());
-        System.out.println("Catarray:"+ catArray);
-    }
 
     public Catcontainer() {}
 
+    protected static void addCat(Cat newCat) {
+        catArray.add(newCat);
+        System.out.println(newCat + "dem catArray hinzugefügt");
+    }
+
     protected void addToObsList() {
         catlist = FXCollections.observableArrayList(catArray);
-        System.out.println("Observable List:" + catlist);
+        System.out.println("Observable List aktualisiert:" + catlist);
     }
     public static ArrayList<Cat> getCatArray() {
         return catArray;
@@ -42,37 +38,35 @@ public class Catcontainer extends Thread {
         this.catArray = catArray;
     }
 
-    protected boolean isSafed() {
-        return safed;
-    }
-
     public void addCatArray(Cat[] newCatArray) {
         Collections.addAll(catArray, newCatArray);
         Collections.sort(catArray, new SortierNamen());
-        catlist = FXCollections.observableArrayList(catArray);
-        System.out.println(catArray);
-        System.out.println(catlist);
-    }
+     }
 
     public void run() {
-        Collections.sort(catArray, new SortierNamen());
-        System.out.println(catArray);
-        System.out.println(catlist);
-        try {
+       try {
             for (int i = 0; true; i++) {
-                if (!safed) {
-                    System.out.println(catArray);
-                    Collections.sort(catlist, new SortierNamen());
-                    saveCompleteArray();
-                    safed=true;
+                if (catArray.size()!=catlist.size()) {
+                    System.out.println(catArray + " unterscheidet sich von " + catlist);
+                    if (catArray.size()>catlist.size()) {
+                        Collections.sort(catArray, new SortierNamen());
+                        addToObsList();
+                        saveCompleteArray();
+                        System.out.println(catArray + " wurde gespeichert. Catlist wurde verworfen");
+                    }
+                    else {
+                        Collections.sort(catlist, new SortierNamen());
+                        saveCompleteArray();
+                        System.out.println(catlist + " wurde gespeichert. CatArray wurde verworfen");
+                    }
                 }
                 // Let the thread sleep for a while.
                 Thread.sleep(400);
             }
         } catch (InterruptedException e) {
-            System.out.println("Thread interrupted.");
+            System.out.println("ContainerMonitorthread interrupted.");
         }
-        System.out.println("Thread exiting.");
+        System.out.println("Containermonitorthread exiting.");
     }
 
     public void start() {
