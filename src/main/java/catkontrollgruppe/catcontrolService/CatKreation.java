@@ -16,13 +16,14 @@ public class CatKreation {
 
 
     public CatKreation() {
-
+        Catcontainer catcontainern = new Catcontainer();
+        int catcount = CatService.countCats();
         try {
             FileInputStream fis2 = new FileInputStream(System.getProperty("user.home") + File.separator + "Cats.txt");
             InputStreamReader isr2 = new InputStreamReader(fis2);
             BufferedReader br2 = new BufferedReader(isr2);
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < catcount; i++) {
                 linie = br2.readLine();
                 linie = br2.readLine();
                 name = linie;
@@ -42,10 +43,10 @@ public class CatKreation {
 
                 //Zur Kontrolle der Objekterzeugung in der Alpha-Programm-Phase im Terminal
                 System.out.println("Die Katze " + newCat + " wurde erzeugt.");
-                Catcontainer catcontainern = new Catcontainer();
                 catcontainern.addCat(newCat);
                 catcontainern.addToObsList();
             }
+            catcontainern.start();
             br2.close();
 
         } catch (IOException ioAusnahme) {
@@ -58,7 +59,7 @@ public class CatKreation {
         Cat newCat = new Cat(name, alter, impfdatum, gewicht, rund, suess);
         Catcontainer catcontainern = new Catcontainer();
         catcontainern.addCat(newCat);
-        catcontainern.addToObsList();
+        //catcontainern.addToObsList();
         JOptionPane.showMessageDialog(null, "Die Katze " + newCat + " wurde erzeugt und dem Datensatz " +
                 "hinzugefügt", "Eingabe erfolgreich", JOptionPane.INFORMATION_MESSAGE);
     }

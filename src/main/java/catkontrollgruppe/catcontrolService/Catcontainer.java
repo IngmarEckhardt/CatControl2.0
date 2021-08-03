@@ -23,6 +23,7 @@ public class Catcontainer extends Thread {
     }
 
     protected void addToObsList() {
+        System.out.println("Inhalt des CatArrays: " + catArray);
         catlist = FXCollections.observableArrayList(catArray);
         System.out.println("Observable List aktualisiert:" + catlist);
     }
