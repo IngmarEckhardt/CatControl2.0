@@ -38,9 +38,9 @@ public class CatKreation {
                 suess = Boolean.parseBoolean(linie);
                 Cat newCat = new Cat(name, alter, impfdatum, gewicht, rund, suess);
                 catcontainern.addCat(newCat);
-                catcontainern.addToObsList();
             }
-            catcontainern.start();
+            CatCache catCache = new CatCache();
+            catCache.start();
             br2.close();
         } catch (IOException ioAusnahme) {
             System.out.print("Datei konnte nicht geöffnet werden.");
