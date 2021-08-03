@@ -13,6 +13,7 @@ public class Catcontainer extends Thread {
     private Thread t;
     private static ArrayList<Cat> catArray = new ArrayList<>();
     private static ObservableList<Cat> catlist;
+    private ObservableList<Cat> speicherCache;
 
     public Catcontainer() {}
 
@@ -33,17 +34,24 @@ public class Catcontainer extends Thread {
 
     // Ein eigener Thread der die Datenbank cached und die Speichermethode auslöst bei Bedarf
     public void run() {
+
         try {
             while (true) {
+                /* Schleife prüft beide Arrays gegeneinander, wählt die größere zum Speichern, cacht sie dafür in einem
+                weiteren ObservableArray. Die Liste kann somit auf neue Katzen reagieren. Die Löschung einer Katze muss
+                 noch implementiert werden.*/
                 if (catArray.size()!=catlist.size()) {
                     if (catArray.size()>catlist.size()) {
-                        Collections.sort(catArray, new SortierNamen());
-                        addToObsList();
+                        speicherCache = FXCollections.observableArrayList(catArray);
+                        Collections.sort(speicherCache, new SortierNamen());
                         saveCompleteArray();
+                        catlist.addAll(0,speicherCache);
                     }
                     else {
-                        Collections.sort(catlist, new SortierNamen());
+                        speicherCache.addAll(0, catlist);
+                        Collections.sort(speicherCache, new SortierNamen());
                         saveCompleteArray();
+                        catArray.addAll(0,speicherCache);
                     }
                 }
                 Thread.sleep(250);
@@ -70,19 +78,19 @@ public class Catcontainer extends Thread {
             }
             BufferedWriter bw = new BufferedWriter(new FileWriter(
                     System.getProperty("user.home") + File.separator + "Cats.txt", false));
-            for (int i = 0; i < catlist.size(); i++) {
+            for (int i = 0; i < speicherCache.size(); i++) {
                 if (i > 0) {
                     bw.write("\n");
                 }
-                bw.write("\n" + catlist.get(i).getName());
-                bw.write("\n" + catlist.get(i).getAlter());
-                bw.write("\n" + catlist.get(i).getImpfdatum());
-                bw.write("\n" + catlist.get(i).getGewicht());
-                if (catlist.get(i).isRund()) {
+                bw.write("\n" + speicherCache.get(i).getName());
+                bw.write("\n" + speicherCache.get(i).getAlter());
+                bw.write("\n" + speicherCache.get(i).getImpfdatum());
+                bw.write("\n" + speicherCache.get(i).getGewicht());
+                if (speicherCache.get(i).isRund()) {
                     bw.write("\n" + "true");
                 } else {
                     bw.write("\n" + "false");
-                } if (catlist.get(i).isSuess()) {
+                } if (speicherCache.get(i).isSuess()) {
                     bw.write("\n" + "true");
                 } else {
                     bw.write("\n" + "false");
