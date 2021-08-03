@@ -1,6 +1,5 @@
 package catkontrollgruppe.catcontrolGUI;
 
-import catkontrollgruppe.catController.CatTable;
 import catkontrollgruppe.catcontrolService.Cat;
 import catkontrollgruppe.catcontrolService.CatKreation;
 import javafx.application.Application;
@@ -83,6 +82,4 @@ public class CatControlGUI extends Application {
         primaryStage.setScene(meineScene);
         primaryStage.show();
     }
-
-
 }
