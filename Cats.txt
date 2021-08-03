@@ -1,0 +1,91 @@
+
+Bernd
+4
+Mai 2010
+5.2
+true
+true
+
+Berta
+21
+Mai 201
+8.21
+true
+true
+
+Berthold
+3
+Juli 200
+5.0
+false
+true
+
+CatBernd
+55
+Mai Niemals
+5.23
+true
+true
+
+Erika
+2
+Mai 2010
+8.2
+true
+true
+
+Ernst
+1
+Januar 2010
+5.0
+true
+true
+
+Janine
+5
+Juni 2010
+7.2
+true
+false
+
+Jaqueline
+23
+Mai 2012
+5.4
+true
+false
+
+Katzilla
+1
+September 2020
+4.8
+false
+true
+
+Marie
+11
+September 2001
+3.5
+false
+true
+
+Morla
+3
+Januar 2009
+6.3
+true
+true
+
+test
+55
+test
+55.0
+true
+false
+
+test2
+55
+Heureka!
+6.0
+true
+true
