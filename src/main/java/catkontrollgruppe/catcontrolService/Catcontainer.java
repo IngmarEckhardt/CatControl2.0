@@ -5,11 +5,10 @@ import javafx.collections.ObservableList;
 
 public class Catcontainer {
     public static ObservableList<Cat> catlist;
-
-
     public Catcontainer() {}
 
-    protected void addCat(Cat newCat) {
+
+    public void addCat(Cat newCat) {
         CatCache.getCatArray().add(newCat);
         catlist = FXCollections.observableArrayList(CatCache.getCatArray());
     }
@@ -18,5 +17,12 @@ public class Catcontainer {
         return catlist;
     }
 
+    protected void deleteCat(Cat catDelete) {
+
+    }
+
+    protected void editCat (Cat catEDIT) {
+
+    }
 
 }
