@@ -12,13 +12,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import javafx.stage.StageStyle;
 
 public class CatControlGUI extends Application {
 
     public static void main(String[] args) {
-        CatKreation cats = new CatKreation();
 
+        CatKreation cats = new CatKreation();
         launch(args);
     }
 
@@ -26,21 +26,18 @@ public class CatControlGUI extends Application {
     public void start(Stage primaryStage) {
 
         primaryStage.setTitle("CatControl");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
 
-// Das Grid wird konstruiert
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(15);
         grid.setVgap(20);
         grid.setPadding(new Insets(10, 10, 10, 10));
 
-//Das erste Textelement, Titel
-
         Text titel = new Text("CatControl - Gibt dir die Kontrolle zurück");
         titel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         grid.add(titel,0,0,3,2);
 
-// Menue-Buttons
         Button knopfDatabase = new Button("Katzen-Datenbank");
         grid.add(knopfDatabase, 0,3);
         Button knopfNewCat = new Button ("Neue Katze hinzufügen");
@@ -57,7 +54,6 @@ public class CatControlGUI extends Application {
         Button knopfQuit = new Button ("CatControl verlassen");
         grid.add(knopfQuit,2,8);
 
-//Button-Aktionen
         knopfDatabase.setOnAction(actionEvent -> CatverwaltungGUI.neuesFenster(primaryStage));
         knopfNewCat.setOnAction(actionEvent -> KatzeneingabeGUI.neuesFenster(primaryStage));
         knopfChangeImpfung.setOnAction(actionEvent -> {
@@ -74,11 +70,8 @@ public class CatControlGUI extends Application {
         });
         knopfQuit.setOnAction(actionEvent -> {
             AbschiedsfensterGUI.neuesFenster(primaryStage);
-            //JOptionPane.showMessageDialog(null, "Programm wird beendet.");
         });
 
-
-// Die Scene wird initialisiert, mit dem grid befüllt und der Stage übergeben
         Scene meineScene = new Scene(grid, 500, 300);
         primaryStage.setScene(meineScene);
         primaryStage.show();

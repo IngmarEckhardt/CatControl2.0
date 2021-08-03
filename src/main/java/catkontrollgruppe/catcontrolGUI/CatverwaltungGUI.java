@@ -1,6 +1,5 @@
 package catkontrollgruppe.catcontrolGUI;
 
-import catkontrollgruppe.catController.CatTable;
 import catkontrollgruppe.catcontrolService.Cat;
 import catkontrollgruppe.catcontrolService.Catcontainer;
 import javafx.collections.ObservableList;
@@ -19,15 +18,15 @@ import javafx.stage.Stage;
 public class CatverwaltungGUI {
 
     public static void neuesFenster(Stage hauptFenster2) {
-        Scene scene = new Scene(new Group(), 600, 600);
+        Scene scene = new Scene(new Group(), 520, 450);
         Stage neuesWindow2 = new Stage();
 
         neuesWindow2.setTitle("Katzendatenbank");
         neuesWindow2.setScene(scene);
         neuesWindow2.initModality(Modality.WINDOW_MODAL);
         neuesWindow2.initOwner(hauptFenster2);
-        neuesWindow2.setX(hauptFenster2.getX() + 80);
-        neuesWindow2.setY(hauptFenster2.getY() + 80);
+        neuesWindow2.setX(hauptFenster2.getX() + 20);
+        neuesWindow2.setY(hauptFenster2.getY() + 20);
 
         Label label;
         label = new Label("Katzendatenbank");
@@ -37,7 +36,6 @@ public class CatverwaltungGUI {
 
         Catcontainer catcontainer = new Catcontainer();
         ObservableList<Cat> catlist = catcontainer.getCatlist();
-        System.out.println("Die" + catlist + "ist in der Catverwaltung angekommen");
 
         TableColumn namenSpalte = new TableColumn<Cat, String>("Name");
         TableColumn alterSpalte = new TableColumn<Cat, String>("Alter");
@@ -55,10 +53,11 @@ public class CatverwaltungGUI {
 
         table.setItems(catlist);
         table.getColumns().addAll(namenSpalte, alterSpalte, impfdatumSpalte, gewichtSpalte, rundSpalte, suessSpalte);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
-        vbox.setPadding(new Insets(0, 0, 0, 0));
+        vbox.setPadding(new Insets(20, 00, 20, 20));
         vbox.getChildren().addAll(label, table);
 
         ((Group) scene.getRoot()).getChildren().addAll(vbox);
