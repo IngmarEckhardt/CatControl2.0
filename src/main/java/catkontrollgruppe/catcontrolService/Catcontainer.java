@@ -13,31 +13,30 @@ public class Catcontainer {
     public Catcontainer() {}
 
 
-    public void CatKreation(String name, int alter, String impfdatum, double gewicht, boolean rund, boolean suess) {
+    public void CatKreation(final String name, final int alter, final String impfdatum, final double gewicht, final boolean rund, final boolean suess) {
 
-        Cat newCat = new Cat(name, alter, impfdatum, gewicht, rund, suess);
-        addCat(newCat);
-        catlist = FXCollections.observableArrayList(catCache.getCatArray());
+        final Cat newCat = new Cat(name, alter, impfdatum, gewicht, rund, suess);
+        this.addCat(newCat);
+        this.catlist = FXCollections.observableArrayList(this.catCache.getCatArray());
         JOptionPane.showMessageDialog(null, "Die Katze " + newCat + " wurde erzeugt und dem Datensatz " +
                 "hinzugefügt", "Eingabe erfolgreich", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    protected void addCat(Cat newCat) {
+    protected void addCat(final Cat newCat) {
 
-        catCache.getCatArray().add(newCat);
-        catlist = FXCollections.observableArrayList(catCache.getCatArray());
+        this.catCache.getCatArray().add(newCat);
+        this.catlist = FXCollections.observableArrayList(this.catCache.getCatArray());
     }
 
     public ObservableList<Cat> getCatlist() {
-        catlist = FXCollections.observableArrayList(catCache.getCatArray());
-        return catlist;
+        this.catlist = FXCollections.observableArrayList(this.catCache.getCatArray());
+        return this.catlist;
     }
 
-    protected void deleteCat(Cat catDelete) {
-        CatCache catCache = new CatCache();
-        catCache.getCatArray().remove(catDelete);
-        intendedDelete = true;
-        catlist = FXCollections.observableArrayList(catCache.getCatArray());
+    public void deleteCat(final Cat catDelete) {
+        this.catCache.getCatArray().remove(catDelete);
+        Catcontainer.intendedDelete = true;
+        this.catlist = FXCollections.observableArrayList(this.catCache.getCatArray());
     }
-    protected void editCat (Cat catEDIT) {}
+    protected void editCat (final Cat catEDIT) {}
 }

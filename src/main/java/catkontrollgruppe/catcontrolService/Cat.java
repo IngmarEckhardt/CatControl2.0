@@ -15,7 +15,7 @@ public class Cat {
     private final SimpleBooleanProperty rund;
     private final SimpleBooleanProperty suess;
 
-    public Cat (String name, int alter, String impfdatum, double gewicht, boolean rund, boolean suess) {
+    public Cat (final String name, final int alter, final String impfdatum, final double gewicht, final boolean rund, final boolean suess) {
         this.name = new SimpleStringProperty(name);
         this.alter = new SimpleIntegerProperty(alter);
         this.impfdatum = new SimpleStringProperty(impfdatum);
@@ -26,17 +26,17 @@ public class Cat {
 
     public Cat() {
 
-        this.name = new SimpleStringProperty("Dummy");
-        this.alter = new SimpleIntegerProperty(99);
-        this.impfdatum = new SimpleStringProperty("September 2011");
-        this.gewicht = new SimpleDoubleProperty(99);
-        this.rund = new SimpleBooleanProperty(true);
-        this.suess = new SimpleBooleanProperty(true);
+        name = new SimpleStringProperty("Dummy");
+        alter = new SimpleIntegerProperty(99);
+        impfdatum = new SimpleStringProperty("September 2011");
+        gewicht = new SimpleDoubleProperty(99);
+        rund = new SimpleBooleanProperty(true);
+        suess = new SimpleBooleanProperty(true);
     }
 
     @Override
     public String toString() {
-        return "Cat{" + name.get() + '}';
+        return "Cat{" + this.name.get() + '}';
     }
 
     /**Die Methode miauen erlaubt es den Katzenobjekten zu miauen*/
@@ -63,74 +63,74 @@ public class Cat {
 
 
     public String getName() {
-        return name.get();
+        return this.name.get();
     }
 
     public SimpleStringProperty nameProperty() {
-        return name;
+        return this.name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name.set(name);
     }
 
     public int getAlter() {
-        return alter.get();
+        return this.alter.get();
     }
 
     public SimpleIntegerProperty alterProperty() {
-        return alter;
+        return this.alter;
     }
 
-    public void setAlter(int alter) {
+    public void setAlter(final int alter) {
         this.alter.set(alter);
     }
 
     public String getImpfdatum() {
-        return impfdatum.get();
+        return this.impfdatum.get();
     }
 
     public SimpleStringProperty impfdatumProperty() {
-        return impfdatum;
+        return this.impfdatum;
     }
 
-    public void setImpfdatum(String impfdatum) {
+    public void setImpfdatum(final String impfdatum) {
         this.impfdatum.set(impfdatum);
     }
 
     public double getGewicht() {
-        return gewicht.get();
+        return this.gewicht.get();
     }
 
     public SimpleDoubleProperty gewichtProperty() {
-        return gewicht;
+        return this.gewicht;
     }
 
-    public void setGewicht(double gewicht) {
+    public void setGewicht(final double gewicht) {
         this.gewicht.set(gewicht);
     }
 
     public boolean isRund() {
-        return rund.get();
+        return this.rund.get();
     }
 
     public SimpleBooleanProperty rundProperty() {
-        return rund;
+        return this.rund;
     }
 
-    public void setRund(boolean rund) {
+    public void setRund(final boolean rund) {
         this.rund.set(rund);
     }
 
     public boolean isSuess() {
-        return suess.get();
+        return this.suess.get();
     }
 
     public SimpleBooleanProperty suessProperty() {
-        return suess;
+        return this.suess;
     }
 
-    public void setSuess(boolean suess) {
+    public void setSuess(final boolean suess) {
         this.suess.set(suess);
     }
 }

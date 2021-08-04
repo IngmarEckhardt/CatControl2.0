@@ -12,24 +12,24 @@ public class CatSpeichermanager {
     public CatSpeichermanager() {
     }
 
-    public void writeCats(ObservableList<Cat> catArray) {
+    public void writeCats(final ObservableList<Cat> catArray) {
         try {
-            File datei = new File(System.getProperty("user.home") + File.separator + "Cats.json");
-            ObjectMapper mapper = new ObjectMapper();
+            final File datei = new File(System.getProperty("user.home") + File.separator + "Cats.json");
+            final ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(datei, catArray);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
     }
 
     protected ArrayList<Cat> readCats() {
-        ArrayList<Cat> catlist = new ArrayList();
-        ObjectMapper mapper = new ObjectMapper();
-        File datei = new File(System.getProperty("user.home") + File.separator + "Cats.json");
+        final ArrayList<Cat> catlist = new ArrayList();
+        final ObjectMapper mapper = new ObjectMapper();
+        final File datei = new File(System.getProperty("user.home") + File.separator + "Cats.json");
         try {
             catlist.addAll(Arrays.asList(mapper.readValue(datei, Cat[].class)));
 
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
         return catlist;
