@@ -33,7 +33,7 @@ public class Catcontainer {
         return this.catlist;
     }
 
-    public void deleteCat(final Cat catDelete) {
+    public void deleteCat(Cat catDelete) {
         this.catCache.getCatArray().remove(catDelete);
         Catcontainer.intendedDelete = true;
         this.catlist = FXCollections.observableArrayList(this.catCache.getCatArray());
