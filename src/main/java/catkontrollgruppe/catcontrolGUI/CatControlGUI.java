@@ -20,7 +20,6 @@ public class CatControlGUI extends Application {
 
         CatCache catCache = new CatCache();
         catCache.start();
-
         launch(args);
     }
 
@@ -71,9 +70,7 @@ public class CatControlGUI extends Application {
             //HilfefensterGUI.neuesFenster(primaryStage);
 
         });
-        knopfQuit.setOnAction(actionEvent -> {
-            AbschiedsfensterGUI.neuesFenster(primaryStage);
-        });
+        knopfQuit.setOnAction(actionEvent -> AbschiedsfensterGUI.neuesFenster(primaryStage));
 
         Scene meineScene = new Scene(grid, 500, 300);
         primaryStage.setScene(meineScene);

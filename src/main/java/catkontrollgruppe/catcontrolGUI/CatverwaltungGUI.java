@@ -1,7 +1,6 @@
 package catkontrollgruppe.catcontrolGUI;
 
 import catkontrollgruppe.catcontrolService.Cat;
-import catkontrollgruppe.catcontrolService.CatCache;
 import catkontrollgruppe.catcontrolService.Catcontainer;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -32,18 +31,18 @@ public class CatverwaltungGUI {
         Label label;
         label = new Label("Katzendatenbank");
         label.setFont(new Font("Arial", 14));
-        TableView<Cat> table = new TableView();
+        TableView<Cat> table = new TableView<>();
         table.setEditable(true);
 
         Catcontainer catcontainer = new Catcontainer();
         ObservableList<Cat> catlist = catcontainer.getCatlist();
 
-        TableColumn namenSpalte = new TableColumn<Cat, String>("Name");
-        TableColumn alterSpalte = new TableColumn<Cat, String>("Alter");
-        TableColumn impfdatumSpalte = new TableColumn<Cat, String>("Impfdatum");
-        TableColumn gewichtSpalte = new TableColumn<Cat, String>( "Gewicht");
-        TableColumn rundSpalte = new TableColumn<Cat, String>("rund");
-        TableColumn suessSpalte = new TableColumn<Cat, String>( "suess");
+        TableColumn<Cat, String> namenSpalte = new TableColumn<Cat, String>("Name");
+        TableColumn<Cat, String> alterSpalte = new TableColumn<Cat, String>("Alter");
+        TableColumn<Cat, String> impfdatumSpalte = new TableColumn<Cat, String>("Impfdatum");
+        TableColumn<Cat, String> gewichtSpalte = new TableColumn<Cat, String>( "Gewicht");
+        TableColumn<Cat, String> rundSpalte = new TableColumn<Cat, String>("rund");
+        TableColumn<Cat, String> suessSpalte = new TableColumn<Cat, String>( "suess");
 
         namenSpalte.setCellValueFactory(new PropertyValueFactory<Cat ,String>("name"));
         alterSpalte.setCellValueFactory(new PropertyValueFactory<Cat, String>("alter"));
@@ -58,7 +57,7 @@ public class CatverwaltungGUI {
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
-        vbox.setPadding(new Insets(20, 00, 20, 20));
+        vbox.setPadding(new Insets(20, 20, 20, 20));
         vbox.getChildren().addAll(label, table);
 
         ((Group) scene.getRoot()).getChildren().addAll(vbox);

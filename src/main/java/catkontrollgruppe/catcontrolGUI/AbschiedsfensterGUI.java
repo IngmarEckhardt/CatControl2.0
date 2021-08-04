@@ -22,15 +22,15 @@ public class AbschiedsfensterGUI {
         grid.setHgap(12);
         grid.setPadding(new Insets(10, 10, 10, 10));
 
-        Scene scene = new Scene(grid, 600, 300);
+        Scene scene = new Scene(grid, 400, 120);
         Stage neuesWindow3 = new Stage();
         neuesWindow3.setScene(scene);
 
         neuesWindow3.setTitle("Auf Wiedersehen");
         neuesWindow3.initModality(Modality.WINDOW_MODAL);
         neuesWindow3.initOwner(hauptFenster);
-        neuesWindow3.setX(hauptFenster.getX() + 10);
-        neuesWindow3.setY(hauptFenster.getY() + 10);
+        neuesWindow3.setX(hauptFenster.getX() + 40);
+        neuesWindow3.setY(hauptFenster.getY() + 20);
 
         Text abschiedstext = new Text("Das Programm wird geschlossen");
         abschiedstext.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
@@ -38,7 +38,7 @@ public class AbschiedsfensterGUI {
         neuesWindow3.show();
 
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.schedule(AbschiedsfensterGUI::closeCatControl, 1, TimeUnit.SECONDS);
+        executorService.schedule(AbschiedsfensterGUI::closeCatControl, 1300, TimeUnit.MILLISECONDS);
     }
 
     protected static void closeCatControl()

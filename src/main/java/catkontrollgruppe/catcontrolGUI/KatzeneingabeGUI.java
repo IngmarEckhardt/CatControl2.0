@@ -1,8 +1,6 @@
 package catkontrollgruppe.catcontrolGUI;
 
 import catkontrollgruppe.catcontrolService.Catcontainer;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -66,26 +64,18 @@ public class KatzeneingabeGUI {
         Button eingabeAbbrechen = new Button ("Abbrechen");
         grid.add(eingabeAbbrechen,0,8);
 
-         eingabeSpeichern.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                String catName = eingabeKatzenname.getText();
-                int alter = Integer.parseInt(eingabeKatzenalter.getText());
-                String impfung = eingabeImpfung.getText();
-                double katzenGewicht = Double.parseDouble(eingabeGewicht.getText());
-                boolean rUnd = rund.isSelected();
-                boolean sUss = suess.isSelected();
-                Catcontainer catcontainer = new Catcontainer();
-                catcontainer.CatKreation(catName,alter,impfung,katzenGewicht,rUnd,sUss);
-                neuesWindow.close();
-            }
-        });
-        eingabeAbbrechen.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                neuesWindow.close();
-            }
-        });
+         eingabeSpeichern.setOnAction(actionEvent -> {
+             String catName = eingabeKatzenname.getText();
+             int alter = Integer.parseInt(eingabeKatzenalter.getText());
+             String impfung = eingabeImpfung.getText();
+             double katzenGewicht = Double.parseDouble(eingabeGewicht.getText());
+             boolean rUnd = rund.isSelected();
+             boolean sUss = suess.isSelected();
+             Catcontainer catcontainer = new Catcontainer();
+             catcontainer.CatKreation(catName,alter,impfung,katzenGewicht,rUnd,sUss);
+             neuesWindow.close();
+         });
+        eingabeAbbrechen.setOnAction(actionEvent -> neuesWindow.close());
         neuesWindow.show();
     }
 }
