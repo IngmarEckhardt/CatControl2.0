@@ -10,4 +10,4 @@ i want to add a small game with stochastic elements and learn with the cats abou
 The main-Method is in CatControlGUI.
 
 
-Take the Cats.txt and place them in the Home-Folder of your User-Account.
+Take the Cats.json and place them in the Home-Folder of your User-Account.
