@@ -1,7 +1,7 @@
 package catkontrollgruppe.catcontrolGUI;
 
 import catkontrollgruppe.catcontrolService.Cat;
-import catkontrollgruppe.catcontrolService.CatKreation;
+import catkontrollgruppe.catcontrolService.CatCache;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,12 +18,15 @@ public class CatControlGUI extends Application {
 
     public static void main(String[] args) {
 
-        CatKreation cats = new CatKreation();
+        CatCache catCache = new CatCache();
+        catCache.start();
+
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
+
 
         primaryStage.setTitle("CatControl");
         primaryStage.initStyle(StageStyle.UNDECORATED);

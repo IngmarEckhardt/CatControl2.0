@@ -1,6 +1,7 @@
 package catkontrollgruppe.catcontrolGUI;
 
 import catkontrollgruppe.catcontrolService.Cat;
+import catkontrollgruppe.catcontrolService.CatCache;
 import catkontrollgruppe.catcontrolService.Catcontainer;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;

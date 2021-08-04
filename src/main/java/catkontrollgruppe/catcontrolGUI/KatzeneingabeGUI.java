@@ -1,6 +1,6 @@
 package catkontrollgruppe.catcontrolGUI;
 
-import catkontrollgruppe.catcontrolService.CatKreation;
+import catkontrollgruppe.catcontrolService.Catcontainer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -75,7 +75,8 @@ public class KatzeneingabeGUI {
                 double katzenGewicht = Double.parseDouble(eingabeGewicht.getText());
                 boolean rUnd = rund.isSelected();
                 boolean sUss = suess.isSelected();
-                CatKreation cat = new CatKreation(catName,alter,impfung,katzenGewicht,rUnd,sUss);
+                Catcontainer catcontainer = new Catcontainer();
+                catcontainer.CatKreation(catName,alter,impfung,katzenGewicht,rUnd,sUss);
                 neuesWindow.close();
             }
         });
