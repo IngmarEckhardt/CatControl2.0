@@ -17,15 +17,15 @@ import org.controlsfx.control.ToggleSwitch;
 
 public class KatzeneingabeGUI {
 
-    public static void neuesFenster(Stage hauptFenster) {
-        GridPane grid = new GridPane();
+    public static void neuesFenster(final Stage hauptFenster) {
+        final GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setVgap(12);
         grid.setHgap(12);
         grid.setPadding(new Insets(10, 10, 10, 10));
 
-        Scene scene = new Scene(grid, 400, 300);
-        Stage neuesWindow = new Stage();
+        final Scene scene = new Scene(grid, 400, 300);
+        final Stage neuesWindow = new Stage();
 
         neuesWindow.setTitle("Katze hinzufügen");
         neuesWindow.setScene(scene);
@@ -34,44 +34,44 @@ public class KatzeneingabeGUI {
         neuesWindow.setX(hauptFenster.getX() + 150);
         neuesWindow.setY(hauptFenster.getY() + 100);
 
-        Text titel = new Text("Geben Sie die ihnen bekannten Daten ihrer Katze ein.");
+        final Text titel = new Text("Geben Sie die ihnen bekannten Daten ihrer Katze ein.");
         titel.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
         grid.add(titel, 0, 0, 2, 1);
 
-        Label katzenname = new Label( "Name der Katze");
+        final Label katzenname = new Label( "Name der Katze");
         grid.add(katzenname,0,2);
-        TextField eingabeKatzenname = new TextField();
+        final TextField eingabeKatzenname = new TextField();
         grid.add(eingabeKatzenname,2,2);
-        Label katzenalter = new Label( "Alter der Katze in Jahren");
+        final Label katzenalter = new Label( "Alter der Katze in Jahren");
         grid.add(katzenalter,0,3);
-        TextField eingabeKatzenalter = new TextField();
+        final TextField eingabeKatzenalter = new TextField();
         grid.add(eingabeKatzenalter,2,3);
-        Label impfDatum = new Label( "Wann wurde die Katze zuletzt geimpft?(Monat Jahr)");
+        final Label impfDatum = new Label( "Wann wurde die Katze zuletzt geimpft?(Monat Jahr)");
         grid.add(impfDatum,0,4);
-        TextField eingabeImpfung = new TextField();
+        final TextField eingabeImpfung = new TextField();
         grid.add(eingabeImpfung,2,4);
-        Label gewicht = new Label( "Wie schwer ist die Katze? Format 0.00(kg)");
+        final Label gewicht = new Label( "Wie schwer ist die Katze? Format 0.00(kg)");
         grid.add(gewicht,0,5);
-        TextField eingabeGewicht = new TextField();
+        final TextField eingabeGewicht = new TextField();
         grid.add(eingabeGewicht,2,5);
-        ToggleSwitch rund = new ToggleSwitch("Die Katze ist rund (on/off)");
+        final ToggleSwitch rund = new ToggleSwitch("Die Katze ist rund (on/off)");
         grid.add(rund,0,6);
-        ToggleSwitch suess = new ToggleSwitch("Die Katze ist suess (on/off)");
+        final ToggleSwitch suess = new ToggleSwitch("Die Katze ist suess (on/off)");
         grid.add(suess,0,7);
 
-        Button eingabeSpeichern = new Button ("Katze hinzufügen");
+        final Button eingabeSpeichern = new Button ("Katze hinzufügen");
         grid.add(eingabeSpeichern,2,8);
-        Button eingabeAbbrechen = new Button ("Abbrechen");
+        final Button eingabeAbbrechen = new Button ("Abbrechen");
         grid.add(eingabeAbbrechen,0,8);
 
          eingabeSpeichern.setOnAction(actionEvent -> {
-             String catName = eingabeKatzenname.getText();
-             int alter = Integer.parseInt(eingabeKatzenalter.getText());
-             String impfung = eingabeImpfung.getText();
-             double katzenGewicht = Double.parseDouble(eingabeGewicht.getText());
-             boolean rUnd = rund.isSelected();
-             boolean sUss = suess.isSelected();
-             Catcontainer catcontainer = new Catcontainer();
+             final String catName = eingabeKatzenname.getText();
+             final int alter = Integer.parseInt(eingabeKatzenalter.getText());
+             final String impfung = eingabeImpfung.getText();
+             final double katzenGewicht = Double.parseDouble(eingabeGewicht.getText());
+             final boolean rUnd = rund.isSelected();
+             final boolean sUss = suess.isSelected();
+             final Catcontainer catcontainer = new Catcontainer();
              catcontainer.CatKreation(catName,alter,impfung,katzenGewicht,rUnd,sUss);
              neuesWindow.close();
          });

@@ -17,9 +17,9 @@ import javafx.stage.Stage;
 
 public class CatverwaltungGUI {
 
-    public static void neuesFenster(Stage hauptFenster2) {
-        Scene scene = new Scene(new Group(), 520, 450);
-        Stage neuesWindow2 = new Stage();
+    public static void neuesFenster(final Stage hauptFenster2) {
+        final Scene scene = new Scene(new Group(), 520, 450);
+        final Stage neuesWindow2 = new Stage();
 
         neuesWindow2.setTitle("Katzendatenbank");
         neuesWindow2.setScene(scene);
@@ -28,21 +28,21 @@ public class CatverwaltungGUI {
         neuesWindow2.setX(hauptFenster2.getX() + 20);
         neuesWindow2.setY(hauptFenster2.getY() + 20);
 
-        Label label;
+        final Label label;
         label = new Label("Katzendatenbank");
         label.setFont(new Font("Arial", 14));
-        TableView<Cat> table = new TableView<>();
+        final TableView<Cat> table = new TableView<>();
         table.setEditable(true);
 
-        Catcontainer catcontainer = new Catcontainer();
-        ObservableList<Cat> catlist = catcontainer.getCatlist();
+        final Catcontainer catcontainer = new Catcontainer();
+        final ObservableList<Cat> catlist = catcontainer.getCatlist();
 
-        TableColumn<Cat, String> namenSpalte = new TableColumn<Cat, String>("Name");
-        TableColumn<Cat, String> alterSpalte = new TableColumn<Cat, String>("Alter");
-        TableColumn<Cat, String> impfdatumSpalte = new TableColumn<Cat, String>("Impfdatum");
-        TableColumn<Cat, String> gewichtSpalte = new TableColumn<Cat, String>( "Gewicht");
-        TableColumn<Cat, String> rundSpalte = new TableColumn<Cat, String>("rund");
-        TableColumn<Cat, String> suessSpalte = new TableColumn<Cat, String>( "suess");
+        final TableColumn<Cat, String> namenSpalte = new TableColumn<>("Name");
+        final TableColumn<Cat, String> alterSpalte = new TableColumn<>("Alter");
+        final TableColumn<Cat, String> impfdatumSpalte = new TableColumn<>("Impfdatum");
+        final TableColumn<Cat, String> gewichtSpalte = new TableColumn<>( "Gewicht");
+        final TableColumn<Cat, String> rundSpalte = new TableColumn<>("rund");
+        final TableColumn<Cat, String> suessSpalte = new TableColumn<>( "suess");
 
         namenSpalte.setCellValueFactory(new PropertyValueFactory<Cat ,String>("name"));
         alterSpalte.setCellValueFactory(new PropertyValueFactory<Cat, String>("alter"));
@@ -55,7 +55,7 @@ public class CatverwaltungGUI {
         table.getColumns().addAll(namenSpalte, alterSpalte, impfdatumSpalte, gewichtSpalte, rundSpalte, suessSpalte);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        final VBox vbox = new VBox();
+        VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(20, 20, 20, 20));
         vbox.getChildren().addAll(label, table);

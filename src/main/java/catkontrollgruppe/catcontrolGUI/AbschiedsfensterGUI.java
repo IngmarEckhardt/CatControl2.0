@@ -14,17 +14,18 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class AbschiedsfensterGUI {
-    public static void neuesFenster(Stage hauptFenster) {
+    public static void neuesFenster(final Stage hauptFenster) {
 
-        GridPane grid = new GridPane();
+        final GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setVgap(12);
         grid.setHgap(12);
         grid.setPadding(new Insets(10, 10, 10, 10));
 
-        Scene scene = new Scene(grid, 400, 120);
-        Stage neuesWindow3 = new Stage();
+        final Scene scene = new Scene(grid, 400, 120);
+        final Stage neuesWindow3 = new Stage();
         neuesWindow3.setScene(scene);
+        neuesWindow3.setOnCloseRequest(actionEvent -> {System.exit(0);});
 
         neuesWindow3.setTitle("Auf Wiedersehen");
         neuesWindow3.initModality(Modality.WINDOW_MODAL);
@@ -32,13 +33,13 @@ public class AbschiedsfensterGUI {
         neuesWindow3.setX(hauptFenster.getX() + 40);
         neuesWindow3.setY(hauptFenster.getY() + 20);
 
-        Text abschiedstext = new Text("Das Programm wird geschlossen");
+        final Text abschiedstext = new Text("Das Programm wird geschlossen");
         abschiedstext.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
         grid.add(abschiedstext, 0, 0, 4, 1);
         neuesWindow3.show();
 
-        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.schedule(AbschiedsfensterGUI::closeCatControl, 1300, TimeUnit.MILLISECONDS);
+        final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.schedule(AbschiedsfensterGUI::closeCatControl, 800, TimeUnit.MILLISECONDS);
     }
 
     protected static void closeCatControl()
