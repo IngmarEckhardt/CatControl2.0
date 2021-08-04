@@ -2,25 +2,23 @@ package catkontrollgruppe.catcontrolService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static catkontrollgruppe.catcontrolService.Catcontainer.catlist;
-
 public class CatCache extends Thread {
     private Thread t;
+    private boolean intendedDelete;
     private static ArrayList<Cat> catArray = new ArrayList<>();
     private ObservableList<Cat> speicherCache;
 
     public CatCache() {
     }
 
-    protected static ArrayList<Cat> getCatArray() {
+    public ArrayList<Cat> getCatArray() {
         return catArray;
     }
 
-    protected static void setCatArray(ArrayList<Cat> catArray) {
+    protected void setCatArray(ArrayList<Cat> catArray) {
         CatCache.catArray = catArray;
     }
 
@@ -33,29 +31,38 @@ public class CatCache extends Thread {
     }
 
     public void run() {
+        CatSpeichermanager catSpeichermanager = new CatSpeichermanager();
+        catSpeichermanager.readCats();
         speicherCache = FXCollections.observableArrayList(catArray);
+        intendedDelete = false;
         try {
             while (true) {
-                /* Schleife prüft beide Arrays gegeneinander, wählt die größere zum Speichern, cacht sie dafür in einem
-                weiteren ObservableArray. Die Liste kann somit auf neue Katzen reagieren. Die Löschung einer Katze muss
-                 noch implementiert werden.*/
-                if (catArray.size()!=speicherCache.size()) {
-                    if (catArray.size()>speicherCache.size()) {
-                        speicherCache = FXCollections.observableArrayList(catArray);
-                        Collections.sort(speicherCache, new SortierNamen());
-                        CatSpeichermanager.saveCompleteArray(speicherCache);
-                        catlist.setAll(speicherCache);
-                    }
-                    else {
-                        speicherCache = FXCollections.observableArrayList(catlist);
-                        Collections.sort(speicherCache, new SortierNamen());
-                        CatSpeichermanager.saveCompleteArray(speicherCache);
-                        for(int i =0 ; i < speicherCache.size(); i++) {
-                            catArray.set(i, speicherCache.get(i));
+                intendedDelete = Catcontainer.intendedDelete;
+                if (!intendedDelete) {
+                    if (catArray.size() != speicherCache.size()) {
+                        if (catArray.size() > speicherCache.size()) {
+                            System.out.println("Das Catarray" +catArray +"ist größer als der Cache, Cache erneut geschrieben und CatArray gespeichtert");
+                            speicherCache = FXCollections.observableArrayList(catArray);
+                            Collections.sort(speicherCache, new SortierNamen());
+                            catSpeichermanager.writeCats(speicherCache);
+                        } else {
+                            System.out.println("Der Cache ist größer als das Catarray, der Cache wurde gespeichert, das catarray neu geschrieben");
+                            Collections.sort(speicherCache, new SortierNamen());
+                            catSpeichermanager.writeCats(speicherCache);
+                            for (int i = 0; i < speicherCache.size(); i++) {
+                                catArray.set(i, speicherCache.get(i));
+                            }
                         }
                     }
+                } else {
+                    System.out.println("Intenteded delete steht auf true und der Cache wird geleert und aus dem verkleinerten Catarray befüllt.");
+                    speicherCache.clear();
+                    speicherCache = FXCollections.observableArrayList(catArray);
+                    Collections.sort(speicherCache, new SortierNamen());
+                    catSpeichermanager.writeCats(speicherCache);
+                    intendedDelete = false;
                 }
-                Thread.sleep(250);
+                Thread.sleep(200);
             }
         } catch (InterruptedException e) {
             System.out.println("ContainerMonitorthread interrupted.");

@@ -1,46 +1,42 @@
 package catkontrollgruppe.catcontrolService;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.ObservableList;
-
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CatSpeichermanager {
 
     public CatSpeichermanager() {
     }
 
-    protected static void saveCompleteArray(ObservableList<Cat> speicherCats) {
+    public void writeCats(ObservableList<Cat> catArray) {
         try {
-            File datei = new File(System.getProperty("user.home") + File.separator + "Cats.txt");
-            if (!datei.exists()) {
-                datei.createNewFile();
-            }
-            BufferedWriter bw = new BufferedWriter(new FileWriter(
-                    System.getProperty("user.home") + File.separator + "Cats.txt", false));
-            for (int i = 0; i < speicherCats.size(); i++) {
-                if (i > 0) {
-                    bw.write("\n");
-                }
-                bw.write("\n" + speicherCats.get(i).getName());
-                bw.write("\n" + speicherCats.get(i).getAlter());
-                bw.write("\n" + speicherCats.get(i).getImpfdatum());
-                bw.write("\n" + speicherCats.get(i).getGewicht());
-                if (speicherCats.get(i).isRund()) {
-                    bw.write("\n" + "true");
-                } else {
-                    bw.write("\n" + "false");
-                } if (speicherCats.get(i).isSuess()) {
-                    bw.write("\n" + "true");
-                } else {
-                    bw.write("\n" + "false");
-                }
-            }
-            bw.close();
-        } catch (IOException ioAusnahme) {
-            System.out.print("Fehler beim Öffnen der Datei");
+            System.out.println("Das" + catArray + "wird neu geschrieben");
+            File datei = new File(System.getProperty("user.home") + File.separator + "Cats.json");
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(datei, catArray);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    protected ArrayList<Cat> readCats() {
+        ArrayList<Cat> catlist = new ArrayList();
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println("Hier läuft es noch");
+        File datei = new File(System.getProperty("user.home") + File.separator + "Cats.json");
+        try {
+            System.out.println(Arrays.asList(mapper.readValue(datei, Cat[].class)));
+            catlist.addAll(Arrays.asList(mapper.readValue(datei, Cat[].class)));
+            System.out.println(catlist);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return catlist;
     }
 }

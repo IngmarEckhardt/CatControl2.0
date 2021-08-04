@@ -1,20 +1,32 @@
 package catkontrollgruppe.catcontrolService;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+
 import javax.swing.*;
 
 public class Cat {
 
-    private SimpleStringProperty name;
-    private SimpleIntegerProperty alter;
-    private SimpleStringProperty impfdatum;
-    private SimpleDoubleProperty gewicht;
-    private SimpleBooleanProperty rund;
-    private SimpleBooleanProperty suess;
+    private final SimpleStringProperty name;
+    private final SimpleIntegerProperty alter;
+    private final SimpleStringProperty impfdatum;
+    private final SimpleDoubleProperty gewicht;
+    private final SimpleBooleanProperty rund;
+    private final SimpleBooleanProperty suess;
 
     public Cat (String name, int alter, String impfdatum, double gewicht, boolean rund, boolean suess) {
         this.name = new SimpleStringProperty(name);
@@ -27,19 +39,18 @@ public class Cat {
 
     public Cat() {
 
-        this.name = new SimpleStringProperty((String)"Dummy");
-        this.alter = new SimpleIntegerProperty((int) 99);
-        this.impfdatum = new SimpleStringProperty((String)"September 2011");
-        this.gewicht = new SimpleDoubleProperty((double) 99);
-        this.rund = new SimpleBooleanProperty((boolean) true);
-        this.suess = new SimpleBooleanProperty((boolean) true);
+        this.name = new SimpleStringProperty("Dummy");
+        this.alter = new SimpleIntegerProperty(99);
+        this.impfdatum = new SimpleStringProperty("September 2011");
+        this.gewicht = new SimpleDoubleProperty(99);
+        this.rund = new SimpleBooleanProperty(true);
+        this.suess = new SimpleBooleanProperty(true);
     }
 
     @Override
     public String toString() {
         return "Cat{" + name.get() + '}';
     }
-
 
     /**Die Methode miauen erlaubt es den Katzenobjekten zu miauen*/
     public void miauen() {
@@ -62,6 +73,7 @@ public class Cat {
     }
 
 // Getter/Setter
+
 
     public String getName() {
         return name.get();
