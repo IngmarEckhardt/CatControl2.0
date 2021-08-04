@@ -29,6 +29,7 @@ public class Catcontainer {
     }
 
     public ObservableList<Cat> getCatlist() {
+        catlist = FXCollections.observableArrayList(catCache.getCatArray());
         return catlist;
     }
 
