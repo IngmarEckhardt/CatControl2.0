@@ -15,6 +15,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
 
+import javax.swing.*;
+
 public class KatzeneingabeGUI {
 
     public static void neuesFenster(final Stage hauptFenster) {
@@ -65,14 +67,22 @@ public class KatzeneingabeGUI {
         grid.add(eingabeAbbrechen,0,8);
 
          eingabeSpeichern.setOnAction(actionEvent -> {
-             final String catName = eingabeKatzenname.getText();
-             final int alter = Integer.parseInt(eingabeKatzenalter.getText());
-             final String impfung = eingabeImpfung.getText();
-             final double katzenGewicht = Double.parseDouble(eingabeGewicht.getText());
-             final boolean rUnd = rund.isSelected();
-             final boolean sUss = suess.isSelected();
-             final Catcontainer catcontainer = new Catcontainer();
+             String catName = eingabeKatzenname.getText();
+             int alter = 0;
+             String impfung = "";
+             double katzenGewicht = 0;
+             try {
+             alter = Integer.parseInt(eingabeKatzenalter.getText());
+             impfung = eingabeImpfung.getText();
+             katzenGewicht = Double.parseDouble(eingabeGewicht.getText());
+             boolean rUnd = rund.isSelected();
+             boolean sUss = suess.isSelected();
+             Catcontainer catcontainer = new Catcontainer();
              catcontainer.CatKreation(catName,alter,impfung,katzenGewicht,rUnd,sUss);
+             } catch (NumberFormatException e) {
+                 e.printStackTrace();
+                 JOptionPane.showMessageDialog(null, "Bitte geben Sie nur zulässige Werte ein");
+             }
              neuesWindow.close();
          });
         eingabeAbbrechen.setOnAction(actionEvent -> neuesWindow.close());
