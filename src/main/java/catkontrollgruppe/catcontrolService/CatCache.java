@@ -12,7 +12,7 @@ public class CatCache extends Thread {
     }
 
     public ArrayList<Cat> getCatArray() {
-        CatCache.catArray.sort(new SortierNamen());
+        CatCache.catArray.sort(new SortName());
         return CatCache.catArray;
     }
 
@@ -29,22 +29,22 @@ public class CatCache extends Thread {
     }
 
     public void run() {
-        CatSpeichermanager catSpeichermanager = new CatSpeichermanager();
-        catArray = catSpeichermanager.readCats();
+        CatRepository catRepository = new CatRepository();
+        catArray = catRepository.readCats();
         ObservableList<Cat> speicherCache = FXCollections.observableArrayList(catArray);
         boolean intendedDelete;
         try {
             while (true) {
-                intendedDelete = Catcontainer.intendedDelete;
+                intendedDelete = CatService.intendedDelete;
                 if (!intendedDelete) {
                     if (catArray.size() != speicherCache.size()) {
                         if (catArray.size() > speicherCache.size()) {
                             speicherCache = FXCollections.observableArrayList(CatCache.catArray);
-                            speicherCache.sort(new SortierNamen());
-                            catSpeichermanager.writeCats(speicherCache);
+                            speicherCache.sort(new SortName());
+                            catRepository.writeCats(speicherCache);
                         } else {
-                            speicherCache.sort(new SortierNamen());
-                            catSpeichermanager.writeCats(speicherCache);
+                            speicherCache.sort(new SortName());
+                            catRepository.writeCats(speicherCache);
                             for (int i = 0; i < speicherCache.size(); i++) {
                                 catArray.set(i, speicherCache.get(i));
                             }
@@ -53,9 +53,9 @@ public class CatCache extends Thread {
                 } else {
                     speicherCache.clear();
                     speicherCache = FXCollections.observableArrayList(catArray);
-                    speicherCache.sort(new SortierNamen());
-                    catSpeichermanager.writeCats(speicherCache);
-                    Catcontainer.intendedDelete = false;
+                    speicherCache.sort(new SortName());
+                    catRepository.writeCats(speicherCache);
+                    CatService.intendedDelete = false;
                 }
                 Thread.sleep(200);
             }
