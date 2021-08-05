@@ -1,5 +1,6 @@
 package catkontrollgruppe.catcontrolGUI;
 
+import catkontrollgruppe.catcontrolService.CatCache;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

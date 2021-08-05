@@ -2,7 +2,9 @@ package catkontrollgruppe.catcontrolGUI;
 
 import catkontrollgruppe.catcontrolService.Cat;
 import catkontrollgruppe.catcontrolService.CatCache;
+import catkontrollgruppe.catcontrolService.Catcontainer;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,9 +19,8 @@ import javafx.stage.StageStyle;
 public class CatControlGUI extends Application {
 
     public static void main(String[] args) {
-
-        CatCache catCache = new CatCache();
-        catCache.start();
+        Catcontainer catcontainer = new Catcontainer();
+        catcontainer.main(args);
         Application.launch(args);
     }
 
@@ -56,7 +57,7 @@ public class CatControlGUI extends Application {
         Button knopfQuit = new Button ("CatControl verlassen");
         grid.add(knopfQuit,2,8);
 
-        knopfDatabase.setOnAction(actionEvent -> CatverwaltungGUI.neuesFenster(primaryStage));
+        knopfDatabase.setOnAction((ActionEvent actionEvent) -> CatverwaltungGUI.neuesFenster(primaryStage));
         knopfNewCat.setOnAction(actionEvent -> KatzeneingabeGUI.neuesFenster(primaryStage));
         knopfChangeImpfung.setOnAction(actionEvent -> KatzeneditorGUI.neuesFenster(primaryStage));
         knopfHilfe.setOnAction(actionEvent -> HilfefensterGUI.neuesFenster(primaryStage));

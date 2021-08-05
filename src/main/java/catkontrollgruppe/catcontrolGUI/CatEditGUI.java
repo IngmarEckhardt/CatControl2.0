@@ -33,8 +33,8 @@ public class CatEditGUI {
         neuesWindow.setScene(scene);
         neuesWindow.initModality(Modality.WINDOW_MODAL);
         neuesWindow.initOwner(hauptFenster);
-        neuesWindow.setX(hauptFenster.getX() - 300);
-        neuesWindow.setY(hauptFenster.getY()+20);
+        neuesWindow.setX(hauptFenster.getX() + 250);
+        neuesWindow.setY(hauptFenster.getY() + 10);
 
         Text titel = new Text("Geben Sie die veränderten Werte der Katze ein " +
                 "\noder lassen das Feld leer wenn sich nichts verändert hat");
@@ -73,7 +73,7 @@ public class CatEditGUI {
         }
         grid.add(rund, 1, 6);
 
-           ToggleSwitch suess = new ToggleSwitch("neu: Katze ist suess (on/off)");
+        ToggleSwitch suess = new ToggleSwitch("neu: Katze ist suess (on/off)");
         if (catcontainer.getCatlist().get(catID).isSuess()==true) {
             suess.setSelected(true);
         }
@@ -90,18 +90,21 @@ public class CatEditGUI {
             String impfung = null;
             double katzenGewicht = 0;
             try {
-            alter = Integer.parseInt(eingabeKatzenalter.getText());
-            impfung = eingabeImpfung.getText();
-            katzenGewicht = Double.parseDouble(eingabeGewicht.getText());
-            boolean rUnd = rund.isSelected();
-            boolean sUss = suess.isSelected();
-            catcontainer.deleteCat(catcontainer.getCatlist().get(catID));
-            catcontainer.CatKreation(catName, alter, impfung, katzenGewicht, rUnd, sUss);
+                alter = Integer.parseInt(eingabeKatzenalter.getText());
+                impfung = eingabeImpfung.getText();
+                katzenGewicht = Double.parseDouble(eingabeGewicht.getText());
+                boolean rUnd = rund.isSelected();
+                boolean sUss = suess.isSelected();
+                catcontainer.deleteCat(catcontainer.getCatlist().get(catID));
+                catcontainer.CatKreation(catName, alter, impfung, katzenGewicht, rUnd, sUss);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Bitte geben Sie nur zulässige Werte ein");
             }
             neuesWindow.close();
+            hauptFenster.close();
+            KatzeneditorGUI.neuesFenster(neuesWindow);
+
         });
         eingabeAbbrechen.setOnAction(actionEvent -> neuesWindow.close());
         neuesWindow.show();

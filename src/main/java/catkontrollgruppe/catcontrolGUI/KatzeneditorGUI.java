@@ -23,7 +23,7 @@ import java.util.List;
 public class KatzeneditorGUI {
     private int katzenID;
 
-    public static void neuesFenster(final Stage hauptFenster) {
+    public static void neuesFenster(Stage hauptFenster) {
         final VBox vBox = new VBox();
         String ausgabe;
         Text katzennamen;
@@ -42,11 +42,11 @@ public class KatzeneditorGUI {
 
         for (int i = 0; i < catlist.size(); i++ ) {
             ausgabe =   "\n\n     "+catlist.get(i).getName()+"" +
-                        "\nAlter: "+ catlist.get(i).getAlter()+ " Jahr(e) " +
-                        "\nImpfdatum: "+ catlist.get(i).getImpfdatum() +
-                        "\nGewicht: " + catlist.get(i).getGewicht()+" kg" +
-                        "\nIst süß: " + catlist.get(i).isSuess() +
-                        "\nIst rund: " + catlist.get(i).isRund();
+                    "\nAlter: "+ catlist.get(i).getAlter()+ " Jahr(e) " +
+                    "\nImpfdatum: "+ catlist.get(i).getImpfdatum() +
+                    "\nGewicht: " + catlist.get(i).getGewicht()+" kg" +
+                    "\nIst süß: " + catlist.get(i).isSuess() +
+                    "\nIst rund: " + catlist.get(i).isRund();
 
             katzennamen = new Text (ausgabe);
             vBox.getChildren().add(katzennamen);
@@ -70,8 +70,8 @@ public class KatzeneditorGUI {
         editorWindow.initModality(Modality.WINDOW_MODAL);
         editorWindow.setOnCloseRequest(actionEvent -> editorWindow.close());
         editorWindow.initOwner(hauptFenster);
-        editorWindow.setX(hauptFenster.getX() + 40);
-        editorWindow.setY(hauptFenster.getY() + 20);
+        editorWindow.setX(+ 40);
+        editorWindow.setY(+ 20);
 
         final Scene scene = new Scene(borderPane, 450, 520);
         editorWindow.setScene(scene);
