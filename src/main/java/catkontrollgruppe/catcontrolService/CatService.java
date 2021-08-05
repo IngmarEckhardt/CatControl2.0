@@ -4,34 +4,37 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class CatService {
+
     private ObservableList<Cat> catlist;
     protected CatCache catCache = new CatCache();
     protected static boolean intendedDelete;
 
+
     public CatService() {
     }
 
-    public static void main(String[] args) {
+    public void startService() {
         CatCache cache = new CatCache();
         cache.start();
     }
 
-    public void CatKreation(final String name, final int alter, final String impfdatum, final double gewicht, final boolean rund, final boolean suess) {
+
+    public void CatKreation(String name, int alter, String impfdatum, double gewicht, boolean rund, boolean suess) {
 
         Cat newCat = new Cat(name, alter, impfdatum, gewicht, rund, suess);
         this.addCat(newCat);
         this.catlist = FXCollections.observableArrayList(this.catCache.getCatArray());
     }
 
-    protected void addCat(final Cat newCat) {
+    public void addCat(Cat newCat) {
 
-        this.catCache.getCatArray().add(newCat);
-        this.catlist = FXCollections.observableArrayList(this.catCache.getCatArray());
+        catCache.getCatArray().add(newCat);
+        catlist = FXCollections.observableArrayList(catCache.getCatArray());
     }
 
     public ObservableList<Cat> getCatlist() {
-        this.catlist = FXCollections.observableArrayList(this.catCache.getCatArray());
-        return this.catlist;
+        catlist = FXCollections.observableArrayList(catCache.getCatArray());
+        return catlist;
     }
 
     public void deleteCat(Cat catDelete) {

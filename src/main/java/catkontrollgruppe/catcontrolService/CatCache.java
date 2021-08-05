@@ -5,19 +5,11 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 public class CatCache extends Thread {
+
     private Thread t;
     private static ArrayList<Cat> catArray = new ArrayList<>();
 
     public CatCache() {
-    }
-
-    public ArrayList<Cat> getCatArray() {
-        CatCache.catArray.sort(new SortName());
-        return CatCache.catArray;
-    }
-
-    protected void setCatArray(final ArrayList<Cat> catArray) {
-        CatCache.catArray = catArray;
     }
 
     public void start() {
@@ -63,5 +55,10 @@ public class CatCache extends Thread {
             System.out.println("ContainerMonitorthread interrupted.");
         }
         System.out.println("Containermonitorthread exiting.");
+    }
+
+    public ArrayList<Cat> getCatArray() {
+        CatCache.catArray.sort(new SortName());
+        return CatCache.catArray;
     }
 }
